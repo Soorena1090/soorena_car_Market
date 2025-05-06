@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Soorena1090/soorena_car_Market/issues"
   },
-  "homepage": "https://github.com/Soorena1090/soorena_car_Market#readme"
+  "homepage": "https://github.com/Soorena1090/soorena_car_Market#readme",
+  "dependencies": {
+    "axios": "^1.9.0"
+  }
 }
