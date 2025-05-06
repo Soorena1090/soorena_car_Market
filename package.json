@@ -1,0 +1,21 @@
+{
+  "name": "car-market",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Soorena1090/soorena_car_Market.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Soorena1090/soorena_car_Market/issues"
+  },
+  "homepage": "https://github.com/Soorena1090/soorena_car_Market#readme"
+}
