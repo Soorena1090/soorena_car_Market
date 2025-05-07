@@ -1,24 +1,17 @@
 const axios = require('axios');
 
-axios.get('https://lm-models.s3.ir-thr-at1.arvanstorage.ir/cars.json')
-.then(response => {
-    console.log(response);
-})
-.catch (error => {
-    console.error(error);
-});
+async function fetchCars() {
+    const response = await axios.get('https://lm-models.s3.ir-thr-at1.arvanstorage.ir/cars.json')
+    return response.data;
+};
 
 
 async function marketPriceData() {
     const response = await axios.get('https://lm-models.s3.ir-thr-at1.arvanstorage.ir/market_prices.json')
-    console.log(response);
+    return response.data;
 };
-marketPriceData()
 
-axios.get('https://baha24.com/api/v1/price')
-.then(response => {
-    console.log(response);
-})
-.catch(error => {
-    console.error(error);
-});
+async function fetchCurrency() {
+    const response = await axios.get('https://baha24.com/api/v1/price')
+    return response.data.USD.Sell;
+};
