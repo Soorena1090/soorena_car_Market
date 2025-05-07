@@ -1,4 +1,5 @@
-const axios = require('axios');
+const axios = require("axios");
+const fs = require("fs/promises")
 
 async function fetchCars() {
     const response = await axios.get('https://lm-models.s3.ir-thr-at1.arvanstorage.ir/cars.json')
@@ -13,7 +14,7 @@ async function marketPriceData() {
 
 async function fetchCurrency() {
     const response = await axios.get('https://baha24.com/api/v1/price')
-    return response.data.USD.Sell;
+    return response.data.USD.sell;
 };
 
 async function main() {
@@ -25,9 +26,9 @@ async function main() {
 
     const mapingCars = cars.map(car => {
         const match = marketData.find(market => {
-            market.barnd === car.brand &&
-            market.model === car.model &&
-            market.year === car.year
+            return market.brand === car.brand &&
+                    market.model === car.model &&
+                    market.year === car.year
         });
         const priceDiff = match ? car.price - match.average_price : 0;
         const mileageDiff = match ? car.mileage - match.average_mileage : 0;
@@ -39,6 +40,7 @@ async function main() {
             mileage_diff_from_average: mileageDiff,
             price_usd: Number(priceUsd)
         };
-    })
-    
+    });
+    await fs.writeFile('cars_data.json', JSON.stringify(mapingCars, null , 2));
+
 }
