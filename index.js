@@ -46,10 +46,23 @@ function analysis(cars) {
     const carByUsd = [...cars].sort((a,b) => a.price_usd - b.price_usd);
     const min = carByUsd[0].price_usd;
     const max = carByUsd[carByUsd.length - 1].price_usd;
-    console.log("Q3: USD price difference between most and least expensive cars:", (maxUSD - minUSD), "USD");
+    console.log("Q3: USD price difference between most and least expensive cars:", (max - min), "USD");
     //---------------------------------Q4
+    const colorCounts = {};
+    cars.forEach(car => {
+        if (colorCounts[car.color]) {
+        colorCounts[car.color]++;
+        } else {
+        colorCounts[car.color] = 1;
+        }
+    });
+    for (const color in colorCounts) {
+        console.log(` - ${color}: ${colorCounts[color]}`);
+    };
+
 }
 async function main() {
+    const startTime = Date.now();
 
     const cars = await fetchCars();
     const marketData= await marketPriceData();
@@ -73,5 +86,10 @@ async function main() {
         };
     });
     await fs.writeFile('cars_data.json', JSON.stringify(mapingCars, null , 2));
+    analysis(mapingCars);
 
+    const endTime = Date.now();
+    const timeTaken = ((endTime - startTime) / 1000);
+    console.log(`${timeTaken}`);
 }
+main();
